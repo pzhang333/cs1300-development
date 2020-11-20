@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Space, Checkbox, Typography, Select } from 'antd';
 import "./FilterBar.css"
 
-const { Text, Title } = Typography;
+const { Title } = Typography;
 const { Option } = Select;
 
 // fake enum since javascript doesn't have built in enums
@@ -14,10 +14,6 @@ const SortEnum = {
 }
 
 class FilterBar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Space direction="vertical" className="flex-column">

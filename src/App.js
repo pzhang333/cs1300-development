@@ -89,6 +89,10 @@ class App extends Component {
     this.setState({champs: newChamps, order: fakeEnum});
   };
 
+  onClick = (event) => {
+    console.log(event);
+  }
+
   render() {
     return (
       <>
@@ -109,7 +113,7 @@ class App extends Component {
           <Content className="flex">
             {
               this.state.champs.map((champData, i) => {
-                return (<Champion key={i} data={champData}/>)
+                return (<Champion key={i} data={champData} onClick={this.onClick}/>)
               })
             }
           </Content>

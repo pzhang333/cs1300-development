@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Avatar, Typography, Space } from 'antd';
+import React, { Component } from 'react';
+import { Card, Avatar, Typography, Space, Button } from 'antd';
 import "./Champion.css";
 
 const { Text, Title } = Typography;
@@ -27,7 +27,7 @@ function getChampImage(champName) {
 
 function renderImageAndText(array, lookupMap) {
   return (
-    <Space direction="vertical">
+    <>
       {
         array.map((setData, i) => {
           return (
@@ -38,34 +38,39 @@ function renderImageAndText(array, lookupMap) {
           )
         })
       }
-    </Space>
+    </>
   )
 };
 
-const Champion = ({ data }) => {
-  const classText = (data.class.size > 1) ? "Classes:" : "Class:";
-  const roleText = (data.role.size > 1) ? "Roles:" : "Role:";
+class Champion extends Component {
+  onClick = (event) => {
+    this.props.onClick(this.props.data);
+  }
 
-  return (
-    <Card
-      className="spacing"
-      cover={<img alt={data.name} src={getChampImage(data.name)} />}
-    >
-      <Title level={4}>Name: </Title>
-      <Text strong>{data.name}</Text>
-      <Title level={4}>{classText}</Title>
-      {renderImageAndText(data.class, ClassMap)}
-      <Title level={4}>{roleText}</Title>
-      {renderImageAndText(data.role, RoleMap)}
-      <Title level={4}>Cost: </Title>
-      <Space direction="vertical">
-        <Space>
+  render() {
+    const classText = (this.props.data.class.size > 1) ? "Classes:" : "Class:";
+    const roleText = (this.props.data.role.size > 1) ? "Roles:" : "Role:";
+
+    return (
+      <Card
+        className="card"
+        cover={<img alt={this.props.data.name} src={getChampImage(this.props.data.name)} />}
+      >
+        <Title level={4}>Name: </Title>
+        <Text strong>{this.props.data.name}</Text>
+        <Title level={4}>{classText}</Title>
+        {renderImageAndText(this.props.data.class, ClassMap)}
+        <Title level={4}>{roleText}</Title>
+        {renderImageAndText(this.props.data.role, RoleMap)}
+        <Title level={4}>Cost: </Title>
+        <Space className="spacing">
           <Avatar src="./be.png" />
-          <Text>{`${data.price} BE`}</Text>
+          <Text>{`${this.props.data.price} BE`}</Text>
         </Space>
-      </Space>
-    </Card>
-  );
-};
+        <Button className="button" type="primary" onClick={this.onClick}>Test</Button>
+      </Card>
+    );
+  }
+}
 
 export default Champion;
