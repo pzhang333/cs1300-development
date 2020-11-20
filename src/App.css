@@ -1,0 +1,12 @@
+@import '~antd/dist/antd.dark.css';
+
+.title {
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
