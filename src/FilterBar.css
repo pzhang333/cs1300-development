@@ -1,0 +1,24 @@
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ant-checkbox-group-item {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.ant-checkbox-group-item span {
+  display: flex;
+}
+
+.ant-checkbox {
+  display: flex;
+}
+
+.ant-typography.no-margin {
+  margin-bottom: 0em;
+}
