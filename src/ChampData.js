@@ -18,12 +18,6 @@ const AllChampData = [
     price: 6300
   },
   {
-    name: "Janna",
-    class: Set(["Controller"]),
-    role: Set(["Support"]),
-    price: 1350
-  },
-  {
     name: "Jax",
     class: Set(["Fighter"]),
     role: Set(["Top", "Jungle"]),
@@ -88,6 +82,12 @@ const AllChampData = [
     class: Set(["Slayer"]),
     role: Set(["Middle"]),
     price: 3150
+  },
+  {
+    name: "Leona",
+    class: Set(["Tank"]),
+    role: Set(["Support"]),
+    price: 4800
   }
 ]
 
