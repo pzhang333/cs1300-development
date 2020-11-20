@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Typography } from 'antd';
 import Champion from './Champion';
+import FilterBar from './FilterBar';
 import AllChampData from './ChampData';
 import './App.css';
 
@@ -19,7 +20,9 @@ class App extends Component {
       <>
         <Title className="title">League of Legends Champion Explorer</Title>
         <Layout>
-          <Sider>Filter Settings</Sider>
+          <Sider>
+            <FilterBar />
+          </Sider>
           <Content className="flex">
             {
               this.state.champs.map((champData, i) => {

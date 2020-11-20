@@ -1,92 +1,92 @@
 const AllChampData = [
   {
     name: "Seraphine",
-    class: new Set(["Mage", "Controller"]),
-    role: new Set(["Middle", "Support"]),
+    class: ["Mage", "Controller"],
+    role: ["Middle", "Support"],
     price: 6300
   },
   {
     name: "Yasuo",
-    class: new Set(["Slayer"]),
-    role: new Set(["Top", "Middle", "Bottom"]),
+    class: ["Slayer"],
+    role: ["Top", "Middle", "Bottom"],
     price: 4800
   },
   {
     name: "Ornn",
-    class: new Set(["Tank"]),
-    role: new Set(["Top"]),
+    class: ["Tank"],
+    role: ["Top"],
     price: 6300
   },
   {
     name: "Jax",
-    class: new Set(["Fighter"]),
-    role: new Set(["Top", "Jungle"]),
+    class: ["Fighter"],
+    role: ["Top", "Jungle"],
     price: 1350
   },
   {
     name: "Ashe",
-    class: new Set(["Marksman"]),
-    role: new Set(["Bottom"]),
+    class: ["Marksman"],
+    role: ["Bottom"],
     price: 450
   },
   {
     name: "Galio",
-    class: new Set(["Mage", "Tank"]),
-    role: new Set(["Middle", "Support"]),
+    class: ["Mage", "Tank"],
+    role: ["Middle", "Support"],
     price: 3150
   },
   {
     name: "Garen",
-    class: new Set(["Fighter", "Tank"]),
-    role: new Set(["Top", "Middle"]),
+    class: ["Fighter", "Tank"],
+    role: ["Top", "Middle"],
     price: 450
   },
   {
     name: "Pantheon",
-    class: new Set(["Fighter"]),
-    role: new Set(["Top", "Middle", "Support"]),
+    class: ["Fighter"],
+    role: ["Top", "Middle", "Support"],
     price: 3150
   },
   {
     name: "Volibear",
-    class: new Set(["Fighter"]),
-    role: new Set(["Top", "Jungle"]),
+    class: ["Fighter"],
+    role: ["Top", "Jungle"],
     price: 3150
   },
   {
     name: "Samira",
-    class: new Set(["Marksman"]),
-    role: new Set(["Bottom"]),
+    class: ["Marksman"],
+    role: ["Bottom"],
     price: 6300
   },
   {
     name: "Lucian",
-    class: new Set(["Marksman"]),
-    role: new Set(["Top", "Middle", "Bottom"]),
+    class: ["Marksman"],
+    role: ["Top", "Middle", "Bottom"],
     price: 4800
   },
   {
     name: "Bard",
-    class: new Set(["Controller"]),
-    role: new Set(["Support"]),
+    class: ["Controller"],
+    role: ["Support"],
     price: 6300
   },
   {
     name: "Zed",
-    class: new Set(["Slayer"]),
-    role: new Set(["Middle"]),
+    class: ["Slayer"],
+    role: ["Middle"],
     price: 4800
   },
   {
     name: "Katarina",
-    class: new Set(["Slayer"]),
-    role: new Set(["Middle"]),
+    class: ["Slayer"],
+    role: ["Middle"],
     price: 3150
   },
   {
     name: "Leona",
-    class: new Set(["Tank"]),
-    role: new Set(["Support"]),
+    class: ["Tank"],
+    role: ["Support"],
     price: 4800
   }
 ]

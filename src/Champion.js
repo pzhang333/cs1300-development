@@ -25,11 +25,11 @@ function getChampImage(champName) {
   return `./champ/${champName.toLowerCase()}.jpg`;
 };
 
-function renderImageAndText(set, lookupMap) {
+function renderImageAndText(array, lookupMap) {
   return (
     <Space direction="vertical">
       {
-        [...set].map((setData, i) => {
+        array.map((setData, i) => {
           return (
             <Space key={i}>
               <Avatar src={lookupMap[setData]} />
