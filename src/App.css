@@ -4,9 +4,3 @@
   text-align: center;
   margin-top: 0.5em;
 }
-
-.flex {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}

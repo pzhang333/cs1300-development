@@ -1,11 +1,13 @@
-import './App.css'; // load default ant design CSS so we can override later
-
 import React, { Component } from 'react';
 import { Layout, Typography, Space, Avatar } from 'antd';
-import ChampionCard from './ChampionCard';
+
+import ContentGrid from './ContentGrid';
+
 import SmallChampionCard from './SmallChampionCard';
 import FilterBar, { SortEnum } from './FilterBar';
 import AllChampData from './ChampData';
+
+import './App.css';
 
 const { Sider, Content } = Layout;
 const { Title, Text } = Typography;
@@ -114,7 +116,6 @@ class App extends Component {
 
   render() {
     const totalCost = this.state.team.reduce((acc, champ) => acc + champ.price, 0);
-    console.log(totalCost);
 
     return (
       <Layout>
@@ -133,11 +134,7 @@ class App extends Component {
             League of Legends Champion Explorer
           </Title>
           <Content>
-            {
-              this.state.champs.map((champData, i) => {
-                return (<ChampionCard key={i} data={champData} onClickAdd={this.onClickAdd} />)
-              })
-            }
+            <ContentGrid champs={this.state.champs} onClickAdd={this.onClickAdd}/>
           </Content>
         </Layout>
         <Sider>
