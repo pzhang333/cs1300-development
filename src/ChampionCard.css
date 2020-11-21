@@ -6,6 +6,7 @@
 }
 
 .ant-card-body {
+  height: 506px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -13,7 +14,7 @@
 
 .button {
   margin-top: auto;
-  width: 56px;
+  width: 140px;
 }
 
 .spacing {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Avatar, Typography, Space, Button } from 'antd';
-import "./Champion.css";
+import "./ChampionCard.css";
 
 const { Text, Title } = Typography;
 
@@ -42,9 +42,9 @@ function renderImageAndText(array, lookupMap) {
   )
 };
 
-class Champion extends Component {
+class ChampionCard extends Component {
   onClick = (event) => {
-    this.props.onClick(this.props.data);
+    this.props.onClickAdd(this.props.data);
   }
 
   render() {
@@ -56,21 +56,25 @@ class Champion extends Component {
         className="card"
         cover={<img alt={this.props.data.name} src={getChampImage(this.props.data.name)} />}
       >
-        <Title level={4}>Name: </Title>
-        <Text strong>{this.props.data.name}</Text>
-        <Title level={4}>{classText}</Title>
-        {renderImageAndText(this.props.data.class, ClassMap)}
-        <Title level={4}>{roleText}</Title>
-        {renderImageAndText(this.props.data.role, RoleMap)}
-        <Title level={4}>Cost: </Title>
-        <Space className="spacing">
-          <Avatar src="./be.png" />
-          <Text>{`${this.props.data.price} BE`}</Text>
+        <Space direction="vertical">
+          <Title level={4}>Name: </Title>
+          <Text strong>{this.props.data.name}</Text>
+          <Title level={4}>{classText}</Title>
+          {renderImageAndText(this.props.data.class, ClassMap)}
+          <Title level={4}>{roleText}</Title>
+          {renderImageAndText(this.props.data.role, RoleMap)}
+          <Title level={4}>Cost: </Title>
+          <Space className="spacing">
+            <Avatar src="./be.png" />
+            <Text>{`${this.props.data.price} BE`}</Text>
+          </Space>
         </Space>
-        <Button className="button" type="primary" onClick={this.onClick}>Test</Button>
+        <Button className="button" type="primary" onClick={this.onClick}>
+          Add To My Team
+        </Button>
       </Card>
     );
   }
 }
 
-export default Champion;
+export default ChampionCard;

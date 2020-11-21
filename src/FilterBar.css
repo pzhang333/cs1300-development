@@ -1,11 +1,11 @@
-.flex-column {
+/* .flex-column {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
-.ant-checkbox-group-item {
+/* .ant-checkbox-group-item {
   display: flex;
   align-content: center;
   align-items: center;
@@ -17,8 +17,13 @@
 
 .ant-checkbox {
   display: flex;
+} */
+
+.ant-checkbox-group-item {
+  display: block;
+  margin-right: 0;
 }
 
-.ant-typography.no-margin {
+/* .ant-typography.no-margin {
   margin-bottom: 0em;
-}
+} */

@@ -16,19 +16,25 @@ const SortEnum = {
 class FilterBar extends Component {
   render() {
     return (
-      <Space direction="vertical" className="flex-column">
-        <Title level={2} className="no-margin">Classes:</Title>
+      <>
+        <Space direction="vertical" align="end">
+          <Title level={2} className="no-margin">Classes:</Title>
+        </Space>
         <Checkbox.Group options={this.props.classes} onChange={this.props.onClassFilter} />
-        <Title level={2} className="no-margin">Roles:</Title>
+        <Space direction="vertical" align="center">
+          <Title level={2} className="no-margin">Roles:</Title>
+        </Space>
         <Checkbox.Group options={this.props.roles} onChange={this.props.onRoleFilter} />
-        <Title level={2} className="no-margin">Sort By:</Title>
+        <Space direction="vertical" align="center">
+          <Title level={2} className="no-margin">Sort By:</Title>
+        </Space>
         <Select defaultValue={this.props.defaultVal} onChange={this.props.onSort}>
           <Option value={SortEnum.NAME_ASC}>Name Ascending</Option>
           <Option value={SortEnum.NAME_DESC}>Name Descending</Option>
           <Option value={SortEnum.COST_ASC}>Cost Ascending</Option>
           <Option value={SortEnum.COST_DESC}>Cost Descending</Option>
         </Select>
-      </Space>
+      </>
     );
   }
 };
