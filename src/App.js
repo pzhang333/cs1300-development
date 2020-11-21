@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { Layout, Typography, Space, Avatar } from 'antd';
-
-import ContentGrid from './ContentGrid';
-
-import SmallChampionCard from './SmallChampionCard';
 import FilterBar, { SortEnum } from './FilterBar';
+import ContentGrid from './ContentGrid';
+import TeamBar from './TeamBar';
 import AllChampData from './ChampData';
-
 import './App.css';
 
 const { Sider, Content } = Layout;
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 const Classes = [
   "Controller",
@@ -115,8 +112,6 @@ class App extends Component {
   }
 
   render() {
-    const totalCost = this.state.team.reduce((acc, champ) => acc + champ.price, 0);
-
     return (
       <Layout>
         <Sider>
@@ -138,18 +133,10 @@ class App extends Component {
           </Content>
         </Layout>
         <Sider>
-          <Space direction="vertical">
-            {
-              this.state.team.map((champData, i) => {
-                return (<SmallChampionCard key={i} data={champData} onClickRemove={this.onClickRemove} />)
-              })
-            }
-            <Title level={2}>Total Cost:</Title>
-            <Space>
-              <Avatar src="./be.png" />
-              <Text>{`${totalCost} BE`}</Text>
-            </Space>
-          </Space>
+          <TeamBar
+            team={this.state.team}
+            onClickRemove={this.onClickRemove}
+          />
         </Sider>
       </Layout>
     );

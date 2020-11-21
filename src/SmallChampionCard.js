@@ -14,7 +14,11 @@ class SmallChampionCard extends Component {
 
   render() {
     return (
-      <div>
+      <Card
+        size="small"
+        style={{ width: 190 }}
+        cover={<img alt={this.props.data.name} src={this.getChampImage(this.props.data.name)} />}
+      >
         <Space direction="vertical">
           <Title level={4}>Name: </Title>
           <Text strong>{this.props.data.name}</Text>
@@ -23,11 +27,11 @@ class SmallChampionCard extends Component {
             <Avatar src="./be.png" />
             <Text>{`${this.props.data.price} BE`}</Text>
           </Space>
+          <Button type="primary" onClick={this.onClick}>
+            Remove From Team
+          </Button>
         </Space>
-        <Button type="primary" onClick={this.onClick}>
-          Remove From My Team
-        </Button>
-      </div>
+      </Card>
     );
   }
 }
