@@ -5,6 +5,7 @@ import "./FilterBar.css"
 const { Title } = Typography;
 const { Option } = Select;
 
+// Since javascript doesn't have real enums we create a "fake enum" here
 const SortEnum = {
   NAME_ASC: "1",
   NAME_DESC: "2",
@@ -12,17 +13,19 @@ const SortEnum = {
   COST_DESC: "4"
 }
 
+// This component is responsible for rendering the filter and sorting bar
 class FilterBar extends Component {
   render() {
     return (
       <Space direction="vertical" align="center">
-        <Title level={2} className="custom-margins">Classes:</Title>
+        <Title level={1} className="custom-margins">Filters:</Title>
+        <Title level={2} className="custom-margins">Class:</Title>
         <Checkbox.Group
           className="vertical"
           options={this.props.classes}
           onChange={this.props.onClassFilter}
         />
-        <Title level={2} className="custom-margins">Roles:</Title>
+        <Title level={2} className="custom-margins">Role:</Title>
         <Checkbox.Group
           className="vertical"
           options={this.props.roles}

@@ -4,6 +4,7 @@ import "./ChampionCard.css";
 
 const { Text, Title } = Typography;
 
+// These maps return an image path given a specific key/property
 const ClassMap = {
   "Controller": "./class/controller.png",
   "Fighter": "./class/fighter.png",
@@ -12,7 +13,6 @@ const ClassMap = {
   "Slayer": "./class/slayer.png",
   "Tank": "./class/tank.png"
 };
-
 const RoleMap = {
   "Top": "./role/top.png",
   "Jungle": "./role/jungle.png",
@@ -21,52 +21,52 @@ const RoleMap = {
   "Support": "./role/support.png",
 };
 
-function getChampImage(champName) {
-  return `./champ/${champName.toLowerCase()}.jpg`;
-};
-
-function renderImageAndText(array, lookupMap) {
-  return (
-    <>
-      {
-        array.map((setData, i) => {
-          return (
-            <Space key={i}>
-              <Avatar src={lookupMap[setData]} />
-              <Text>{setData}</Text>
-            </Space>
-          )
-        })
-      }
-    </>
-  )
-};
-
 class ChampionCard extends Component {
-  onClick = (event) => {
-    this.props.onClickAdd(this.props.data);
+  getChampImagePath = (champName) => {
+    return `./champ/${champName.toLowerCase()}.jpg`;
+  }
+
+  renderImageAndText = (array, map) => {
+    return (
+      <>
+        {
+          array.map((data, i) => {
+            return (
+              <Space key={i}>
+                <Avatar src={map[data]} />
+                <Text>{data}</Text>
+              </Space>
+            )
+          })
+        }
+      </>
+    )
+  }
+
+  onClick = (_) => {
+    this.props.addChamp(this.props.champ);
   }
 
   render() {
-    const classText = (this.props.data.class.size > 1) ? "Classes:" : "Class:";
-    const roleText = (this.props.data.role.size > 1) ? "Roles:" : "Role:";
+    const classText = (this.props.champ.class.size > 1) ? "Classes:" : "Class:";
+    const roleText = (this.props.champ.role.size > 1) ? "Roles:" : "Role:";
 
     return (
       <Card
         className="card"
-        cover={<img alt={this.props.data.name} src={getChampImage(this.props.data.name)} />}
+        cover={<img alt={this.props.champ.name} src={this.getChampImagePath(this.props.champ.name)} />}
       >
         <Space direction="vertical">
           <Title level={4}>Name: </Title>
-          <Text strong>{this.props.data.name}</Text>
+          <Text strong>{this.props.champ.name}</Text>
           <Title level={4}>{classText}</Title>
-          {renderImageAndText(this.props.data.class, ClassMap)}
+          {this.renderImageAndText(this.props.champ.class, ClassMap)}
           <Title level={4}>{roleText}</Title>
-          {renderImageAndText(this.props.data.role, RoleMap)}
+          {this.renderImageAndText(this.props.champ.role, RoleMap)}
           <Title level={4}>Cost: </Title>
           <Space className="spacing">
             <Avatar src="./be.png" />
-            <Text>{`${this.props.data.price} BE`}</Text>
+            <Text>{`${this.props.champ.price} BE`}</Text>
           </Space>
         </Space>
         <Button className="button" type="primary" onClick={this.onClick}>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Col, Row } from 'antd';
 import ChampionCard from './ChampionCard';
 
+// This component is responsible for rendering our grid of champion cards
 class ContentGrid extends Component {
   render() {
     return (
@@ -9,11 +10,10 @@ class ContentGrid extends Component {
         {
           this.props.champs.map((champData, i) => {
             return (
-              <Col>
+              <Col key={i}>
                 <ChampionCard
-                  data={champData}
-                  onClickAdd={this.props.onClickAdd}
-                  key={i}
+                  champ={champData}
+                  addChamp={this.props.addChamp}
                 />
               </Col>
             );

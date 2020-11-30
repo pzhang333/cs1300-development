@@ -1,3 +1,4 @@
+// This class contains all our data. It's essentially a mock "database"
 const AllChampData = [
   {
     name: "Seraphine",

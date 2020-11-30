@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Typography, Space, Avatar } from 'antd';
+import { Layout, Typography } from 'antd';
 import FilterBar, { SortEnum } from './FilterBar';
 import ContentGrid from './ContentGrid';
 import TeamBar from './TeamBar';
@@ -9,6 +9,7 @@ import './App.css';
 const { Sider, Content } = Layout;
 const { Title } = Typography;
 
+// These arrays hold static data that is relevant to all champions
 const Classes = [
   "Controller",
   "Fighter",
@@ -17,7 +18,6 @@ const Classes = [
   "Slayer",
   "Tank"
 ]
-
 const Roles = [
   "Top",
   "Jungle",
@@ -26,13 +26,21 @@ const Roles = [
   "Support"
 ]
 
+// This is our "main class". This component holds all state data and is
+// responsible for implementing all state change handlers. The logic for filtering
+// and sorting is also here.
 class App extends Component {
   constructor(props) {
     super(props);
 
+    // We make a copy here so we don't accidentally mutate the original data array
     const newChamps = [...AllChampData];
+
+    // Since this is the constructor, we can't use our defined sort function yet
+    // and thus we need to manually sort
     newChamps.sort((a, b) => a.name.localeCompare(b.name));
 
+    // Setting the default state
     this.state = {
       champs: newChamps,
       classes: [],
@@ -42,37 +50,62 @@ class App extends Component {
     };
   }
 
-  onClassFilter = (checkedValues) => {
-    this.setState({ classes: checkedValues }, () => {
+  // These handlers both call another function since we need to be able to
+  // filter based on multiple categories, so we delegate that work to another function
+  onClassFilter = (selectedClasses) => {
+    this.setState({ classes: selectedClasses }, () => {
+      this.filterChamps();
+    })
+  }
+  onRoleFilter = (selectedRoles) => {
+    this.setState({ roles: selectedRoles }, () => {
       this.filterChamps();
     })
   }
 
-  onRoleFilter = (checkedValues) => {
-    this.setState({ roles: checkedValues }, () => {
-      this.filterChamps();
-    })
+  champAlreadyInTeam = (champ) => {
+    // Since champion names are unique, we can check this condition based on champ name
+    return this.state.team.some((champInTeam) => champInTeam.name === champ.name);
   }
 
+  champMatchesClasses = (champ) => {
+    return this.state.classes.every((targetClass) => champ.class.includes(targetClass));
+  }
+
+  champMatchesRoles = (champ) => {
+    return this.state.roles.every((targetRole) => champ.role.includes(targetRole));
+  }
+
+  // This function handles filtering by both class and role
   filterChamps = () => {
+    // First we get a list of all champions
     let newChamps = [...AllChampData];
-    newChamps = newChamps.filter((champ) => !this.state.team.some((other) => other.name === champ.name));
+
+    // We remove any champs that are in the cart/in our team
+    newChamps = newChamps.filter((champ) => !this.champAlreadyInTeam(champ));
+
+    // We keep only champs that match the desired classes
     if (this.state.classes.length !== 0) {
-      newChamps = newChamps.filter((champ) => this.state.classes.every((target) => champ.class.includes(target)));
+      newChamps = newChamps.filter((champ) => this.champMatchesClasses(champ));
     }
+
+    // We keep only champs that match the desired roles
     if (this.state.roles.length !== 0) {
-      newChamps = newChamps.filter((champ) => this.state.roles.every((target) => champ.role.includes(target)));
+      newChamps = newChamps.filter((champ) => this.champMatchesRoles(champ));
     }
+
     this.setState({ champs: newChamps }, () => {
+      // We need to sort the result since the original data (AllChampData) is unsorted
       this.onSort(this.state.order);
     });
   }
 
-  onSort = (fakeEnum) => {
-    // javascript sort mutates array, so we need to copy champs first
+  onSort = (sortEnum) => {
+    // Javascript's built-in sort mutates the array. However, we don't want to
+    // directly mutate state in React. Therefore, we copy the array first.
     const newChamps = [...this.state.champs];
 
-    switch (fakeEnum) {
+    switch (sortEnum) {
       case SortEnum.NAME_ASC:
         newChamps.sort((a, b) => a.name.localeCompare(b.name));
         break;
@@ -88,26 +121,26 @@ class App extends Component {
       default:
         newChamps.sort((a, b) => a.name.localeCompare(b.name));
     }
-    this.setState({ champs: newChamps, order: fakeEnum });
-  };
+    this.setState({ champs: newChamps, order: sortEnum });
+  }
 
-  onClickAdd = (data) => {
-    const newChamps = this.state.champs.filter((champ) => champ.name !== data.name);
-    const newTeam = [...this.state.team, data];
+  // Handler to add a champion to our cart/team
+  addChamp = (targetChamp) => {
+    const newChamps = this.state.champs.filter((champ) => champ.name !== targetChamp.name);
+    const newTeam = [...this.state.team, targetChamp];
     this.setState({
       champs: newChamps,
       team: newTeam
     });
   }
 
-  onClickRemove = (data) => {
-    const newChamps = [...this.state.champs, data];
-    const newTeam = this.state.team.filter(champ => champ.name !== data.name);
+  // Handler to remove a champion from our cart/team
+  removeChamp = (targetChamp) => {
+    const newTeam = this.state.team.filter(champ => champ.name !== targetChamp.name);
     this.setState({
-      champs: newChamps,
       team: newTeam
     }, () => {
-      this.onSort(this.state.order);
+      this.filterChamps();
     });
   }
 
@@ -129,13 +162,13 @@ class App extends Component {
             League of Legends Champion Explorer
           </Title>
           <Content>
-            <ContentGrid champs={this.state.champs} onClickAdd={this.onClickAdd}/>
+            <ContentGrid champs={this.state.champs} addChamp={this.addChamp}/>
           </Content>
         </Layout>
         <Sider>
           <TeamBar
             team={this.state.team}
-            onClickRemove={this.onClickRemove}
+            removeChamp={this.removeChamp}
           />
         </Sider>
       </Layout>
