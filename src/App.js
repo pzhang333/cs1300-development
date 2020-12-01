@@ -40,7 +40,7 @@ class App extends Component {
     // and thus we need to manually sort
     newChamps.sort((a, b) => a.name.localeCompare(b.name));
 
-    // Setting the default state
+    // Setting the default state of our app
     this.state = {
       champs: newChamps,
       classes: [],
@@ -121,6 +121,7 @@ class App extends Component {
       default:
         newChamps.sort((a, b) => a.name.localeCompare(b.name));
     }
+
     this.setState({ champs: newChamps, order: sortEnum });
   }
 
@@ -128,6 +129,7 @@ class App extends Component {
   addChamp = (targetChamp) => {
     const newChamps = this.state.champs.filter((champ) => champ.name !== targetChamp.name);
     const newTeam = [...this.state.team, targetChamp];
+
     this.setState({
       champs: newChamps,
       team: newTeam
@@ -137,6 +139,7 @@ class App extends Component {
   // Handler to remove a champion from our cart/team
   removeChamp = (targetChamp) => {
     const newTeam = this.state.team.filter(champ => champ.name !== targetChamp.name);
+    
     this.setState({
       team: newTeam
     }, () => {

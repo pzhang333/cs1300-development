@@ -2,7 +2,7 @@
 
 ## Organization of Components
 
-In general, I tried to use Object oriented programming techniques when deciding
+In general, I tried to use object oriented programming techniques when deciding
 what components to make. This means that each of my components tries to serve
 1 specific function. For example, the `ChampionCard` component is responsible
 for rendering a card with the details of each champion. However, it does not

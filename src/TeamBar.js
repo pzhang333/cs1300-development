@@ -5,10 +5,10 @@ import './TeamBar.css';
 
 const { Title, Text } = Typography;
 
-// This component renders the champions in the cart and calculates their total cost
+// This component renders the champions in the "cart" and calculates their total cost
 class TeamBar extends Component {
   render() {
-    // calculating total cost using functional programming, total starts at 0
+    // Calculating total cost using functional programming, total starts at 0
     const totalCost = this.props.team.reduce((total, champ) => total + champ.price, 0);
 
     return (

@@ -21,6 +21,8 @@ const RoleMap = {
   "Support": "./role/support.png",
 };
 
+// This component renders a champion card given the correct data. This card
+// displays properties such as name, role, classes, and price.
 class ChampionCard extends Component {
   getChampImagePath = (champName) => {
     return `./champ/${champName.toLowerCase()}.jpg`;

@@ -1,4 +1,4 @@
-// This class contains all our data. It's essentially a mock "database"
+// This class contains all our data. It's essentially a mock "database".
 const AllChampData = [
   {
     name: "Seraphine",
@@ -89,6 +89,12 @@ const AllChampData = [
     class: ["Tank"],
     role: ["Support"],
     price: 4800
+  },
+  {
+    name: "Poppy",
+    class: ["Tank"],
+    role: ["Top", "Jungle", "Support"],
+    price: 450
   }
 ]
 
