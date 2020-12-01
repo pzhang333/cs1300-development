@@ -59,3 +59,8 @@ since all components are stateless, all callbacks are implemented in `App.js`.
 Then, these callback functions are passed down to child components via props,
 and the child components use the callback functions to update the state as needed
 in `App.js`.
+
+## Libraries Used
+
+I used React and Ant Design to create this application. Champion images are taken
+from Riot Game's public API.
