@@ -19,19 +19,19 @@ class FilterBar extends Component {
     return (
       <Space direction="vertical" align="center">
         <Title level={1} className="custom-margins">Filters:</Title>
-        <Title level={2} className="custom-margins">Class:</Title>
+        <Title level={3} className="custom-margins">Class:</Title>
         <Checkbox.Group
           className="vertical"
           options={this.props.classes}
           onChange={this.props.onClassFilter}
         />
-        <Title level={2} className="custom-margins">Role:</Title>
+        <Title level={3} className="custom-margins">Role:</Title>
         <Checkbox.Group
           className="vertical"
           options={this.props.roles}
           onChange={this.props.onRoleFilter}
         />
-        <Title level={2} className="custom-margins">Sort By:</Title>
+        <Title level={1} className="custom-margins">Sort By:</Title>
         <Select defaultValue={this.props.defaultVal} onChange={this.props.onSort}>
           <Option value={SortEnum.NAME_ASC}>Name Ascending</Option>
           <Option value={SortEnum.NAME_DESC}>Name Descending</Option>

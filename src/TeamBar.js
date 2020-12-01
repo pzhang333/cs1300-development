@@ -16,7 +16,7 @@ class TeamBar extends Component {
         <Row justify="center" gutter={[0, 10]}>
           <Col>
             <Title className="add-margin-top" level={1}>My Team:</Title>
-            <Title className="add-margin-top" level={2}>Total Cost:</Title>
+            <Title className="add-margin-top" level={3}>Total Cost:</Title>
             <Space>
               <Avatar src="./be.png" />
               <Text>{`${totalCost} BE`}</Text>
